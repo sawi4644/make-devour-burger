@@ -39,7 +39,7 @@ var orm = {
         burg(result);
       });
     },
-    create: function(table, cols, vals, burg) {
+    insert: function(table, cols, vals, burg) {
       var queryString = "INSERT INTO " + table;
   
       queryString += " (";
