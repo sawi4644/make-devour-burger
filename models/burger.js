@@ -11,4 +11,4 @@ const burger={
     //update
 }
 
-modeule.exports=burger;
+module.exports=burger;
