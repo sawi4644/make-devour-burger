@@ -51,26 +51,21 @@ var orm = {
           callback(result);
       });
     },
-    
-    updateOne: function(table, objColVals, condition, burg) {
-      var queryString = "UPDATE " + table;
-  
-      queryString += " SET ";
-      queryString += objColVals;
-      queryString += " WHERE ";
-      queryString += condition;
-  
-      console.log(queryString);
-      connection.query(queryString, function(err, result) {
-        if (err) {
-          throw err;
-        }
-  
-        burg(result);
+    updateOne: function (burgerStatus, burgerId, callback) {
+      var queryString = "UPDATE burgers SET devoured = " + burgerStatus + " WHERE id = " + burgerId;
+
+      connection.query(queryString, function (error, result) {
+          if (error) {
+              console.log("MYSQL UPDATE QUERY ERROR: " + error);
+          } else if (result.affectedRows === 0) {
+              console.log("MYSQL UPDATE QUERY ERROR: " + error);
+          } else {
+              console.log("Status of burger has been updated!");
+          }
+          callback(result);
       });
-    },
-    
-  };
-  
+  }
+}
+
 
 module.exports = orm;
