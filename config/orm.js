@@ -41,24 +41,14 @@ var orm = {
         callback(result);
       });
     },
-    insertOne: function(table, cols, vals, burg) {
-      var queryString = "INSERT INTO " + table;
-  
-      queryString += " (";
-      queryString += cols.toString();
-      queryString += ") ";
-      queryString += "VALUES (";
-      queryString += printQuestionMarks(vals.length);
-      queryString += ") ";
-  
-      console.log(queryString);
-  
-      connection.query(queryString, vals, function(err, result) {
-        if (err) {
-          throw err;
-        }
-  
-        burg(result);
+    insertOne: function (burgerName, callback) {
+      var queryString = "INSERT INTO burgers (burger_name, devoured) VALUES ('" + burgerName + "', false)";
+      connection.query(queryString, function (error, result) {
+          if (error) {
+              console.log("MYSQL INSERT QUERY ERROR: " + error);
+          }
+          console.log("New burger created: " + burgerName + "!");
+          callback(result);
       });
     },
     
