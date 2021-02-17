@@ -30,16 +30,18 @@ function printQuestionMarks(num) {
 
 //creating mysql statements
 var orm = {
-    all: function(tableInput, burg) {
+    selectAll: function(callback) {
       var queryString = "SELECT * FROM " + tableInput + ";";
       connection.query(queryString, function(err, result) {
         if (err) {
           throw err;
         }
-        burg(result);
+        console.log('NICE! You have selected all data')
+        console.log(result)
+        callback(result);
       });
     },
-    insert: function(table, cols, vals, burg) {
+    insertOne: function(table, cols, vals, burg) {
       var queryString = "INSERT INTO " + table;
   
       queryString += " (";
@@ -60,7 +62,7 @@ var orm = {
       });
     },
     
-    update: function(table, objColVals, condition, burg) {
+    updateOne: function(table, objColVals, condition, burg) {
       var queryString = "UPDATE " + table;
   
       queryString += " SET ";
