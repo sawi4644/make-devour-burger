@@ -1,40 +1,42 @@
-$(function(){
-    $('#button').on('click', function(event){
-        event.preventDefault()
-        let newBurger = {
-            burger_name: $('#user').val(),
-            devoured: false,
-    
-    }
 
-        $.ajax('/api/burger', {
-            type: 'POST',
-            data: newBurger,
-        }).then(function () {            
-            location.reload();
-            
-            console.log('Posted')
-        
-        })
-    });
-   
-   
-    $('.devour').on('click', function(event) {
-        event.preventDefault()
-        let id = event.target.id
-        let newBurger = {
-            burger_name: event.target.burger_name,
-            devoured: true
-        }
-        console.log(event.target.id)
-        $.ajax('api/burger/' + id, {
-            type: 'PUT',
-            data: newBurger
-
-        }).then( function() {
-            console.log('Devoured burger' + id)
-            location.reload()
-
-        })
-    })
-})
+$(function() {
+	$("#submit").on("click", function() {
+		event.preventDefault();
+		var burgerName = $("#name").val().trim();
+		console.log(burgerName);
+		if (burgerName == "") {
+			alert("Add a burger to order!");
+		} else {
+			$.ajax("/api/burgers", {
+			type: "POST",
+			data: {
+				burgerName: burgerName
+			}
+			}).then(function(response) {
+				location.reload();
+			});
+		}
+	});
+	$(".burger").on("click", function() {
+		var id = $(this).data("id");
+		$.ajax("/api/burgers/" + id, {
+			type: "PUT",
+			data: {
+			devoured: true
+		}
+		}).then(function() {
+		location.reload();
+		});
+	});
+	$(".cutlery").on("click", function() {
+		var id = $(this).data("id");
+		$.ajax("/api/burgers/" + id, {
+			type: "PUT",
+			data: {
+			devoured: false
+			}
+		}).then(function() {
+			location.reload();	
+		});
+	});
+});
