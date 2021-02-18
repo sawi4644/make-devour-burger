@@ -11,8 +11,8 @@
   Make-Devour-Burger is a restaurant app that lets users input the names of burgers they'd like to eat once they have input the burgers they would like to eat then they may choose which to devour.
   
   ## Deployed Site
-    https://afternoon-forest-25278.herokuapp.com/
-    ![Home] 
+    
+    ![Home](home.png)
 
   ## Installation
   npm install
