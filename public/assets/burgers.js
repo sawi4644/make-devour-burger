@@ -1,5 +1,5 @@
 $(function() {
-	$("#submit").on("click", function() {
+	$("#submit").on("click", function(event) {
 		event.preventDefault();
 		var burgerName = $("#name").val().trim();
 		console.log(burgerName);

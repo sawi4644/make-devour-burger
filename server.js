@@ -12,7 +12,7 @@ app.set("view engine", "handlebars");
 const routes = require("./controllers/burgersControllers.js");
 
 app.use(routes);
-app.use(express.static("./public"));
+app.use(express.static("public"));
 
 
 app.listen(PORT, function() {
